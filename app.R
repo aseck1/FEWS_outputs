@@ -1,3 +1,4 @@
+#Adapted from https://shiny.rstudio.com/gallery/plot-interaction-zoom.html
 library(ggplot2)
 #library(Cairo)   # For nicer ggplot2 output when deployed on Linux
 
@@ -13,7 +14,7 @@ ui <- fluidPage(
                     )
              ),
              column(width =8,
-                    plotOutput("plot3", height = 300)
+                    plotOutput("plot3", height = 500)
              )
            )
     
@@ -38,7 +39,8 @@ server <- function(input, output) {
          xlab="",
          ylab="Flow (cfs)",
          col = "blue",
-         frame.plot=TRUE)
+         frame.plot=TRUE,
+         main = "Flow at Little Falls")
     
     lines(lffs_daily_data1.df$datetime,
           lffs_daily_data1.df$discharge_daily,
@@ -48,7 +50,7 @@ server <- function(input, output) {
           lffs_daily_data2.df$discharge_daily,
           lty=1, lwd=2, col="green")
     
-    
+    legend("topright", inset=.04, legend=c("USGS", "LFFS_05_29_2018", "LFFS_03_12_2018" ), col=c("blue", "red", "green"), lty=1:1, cex=1.2)
   })
   
   output$plot3 <- renderPlot({

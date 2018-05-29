@@ -5,7 +5,8 @@ library(tidyverse)
 library(data.table)
 library(ggplot2)
 
-filename <- "Z:/MODEL/p52fc05_sa/output/pltgen/river/p52Luke/PM7_4820_0001.flow"
+#filename <- "Z:/MODEL/p52fc05_sa/output/pltgen/river/p52Luke/PM7_4820_0001.flow"
+filename <- "data/PM7_4820_0001_1.flow"
 X2 <- read.csv(filename, header = FALSE, skip = 26, sep = "")
 colnames(X2) <- c("year","month", "day", "hour", "second", "discharge")
 lffs_data1.df <- X2
@@ -25,7 +26,8 @@ lffs_daily_data1.df <- lffs_data1.df %>%
   summarize(discharge_daily = mean(discharge))  
 
 
-filename <- "Z:/MODEL/p52_archives/p52fc05_sa_031218/output/pltgen/river/p52Luke/PM7_4820_0001.flow" 
+#filename <- "Z:/MODEL/p52_archives/p52fc05_sa_031218/output/pltgen/river/p52Luke/PM7_4820_0001.flow" 
+filename <- "data/PM7_4820_0001_2.flow"
 X3 <- read.csv(filename, header = FALSE, skip = 26, sep = "")
 colnames(X3) <- c("year","month", "day", "hour", "second", "discharge")
 lffs_data2.df <- X3
