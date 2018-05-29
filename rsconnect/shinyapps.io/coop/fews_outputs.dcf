@@ -5,6 +5,6 @@ account: coop
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 350676
-bundleId: 1399024
+bundleId: 1399030
 url: https://coop.shinyapps.io/fews_outputs/
-when: 1527620554.23616
+when: 1527620905.9169
