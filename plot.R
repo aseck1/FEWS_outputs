@@ -9,3 +9,7 @@ plot(data.df$datetime,
 lines(lffs_daily_data1.df$datetime,
       lffs_daily_data1.df$discharge_daily,
       lty=2, lwd=2, col="red")
+
+lines(lffs_daily_data2.df$datetime,
+      lffs_daily_data2.df$discharge_daily,
+      lty=1, lwd=2, col="green")
