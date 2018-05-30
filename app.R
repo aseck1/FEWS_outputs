@@ -2,6 +2,8 @@
 library(ggplot2)
 #library(Cairo)   # For nicer ggplot2 output when deployed on Linux
 
+source('functions/functions.R')
+
 ui <- fluidPage(
            h4("To zoom in, brush on top plot"),
            fluidRow(
@@ -24,17 +26,22 @@ ui <- fluidPage(
 
 server <- function(input, output) {
   
-  
+########################################
+usgs_data.df <- get_usgs("data/usgs_flow.csv")
+lffs_daily_data1.df <- get_lffs("data/PM7_4820_0001_1.flow")
+lffs_daily_data2.df <- get_lffs("data/PM7_4820_0001_2.flow")
+
   
   # -------------------------------------------------------------------
   # Linked plots (middle and right)
   ranges2 <- reactiveValues(x = NULL, y = NULL)
+
   
   output$plot2 <- renderPlot({
     #ggplot(mtcars, aes(wt, mpg)) +
      # geom_point()
-    plot(data.df$datetime, 
-         data.df$discharge_daily,
+    plot(usgs_data.df$datetime, 
+         usgs_data.df$discharge_daily,
          type="l",
          xlab="",
          ylab="Flow (cfs)",
@@ -57,8 +64,8 @@ server <- function(input, output) {
     #ggplot(mtcars, aes(wt, mpg)) +
      # geom_point() +
       #coord_cartesian(xlim = ranges2$x, ylim = ranges2$y, expand = FALSE)
-    plot(data.df$datetime, 
-         data.df$discharge_daily,
+    plot(usgs_data.df$datetime, 
+         usgs_data.df$discharge_daily,
          type="l",
          xlab="",
          ylab="Flow (cfs)",
