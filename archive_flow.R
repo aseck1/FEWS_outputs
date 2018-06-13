@@ -1,8 +1,11 @@
-output_directory <- "C://Users/secka/documents/icprb/FEWS_outputs/data/"
-archive_directory1 <- "C://Users/secka/documents/icprb/FEWS_outputs/archive/"
-archive_directory2 <- "C://Users/secka/documents/icprb/FEWS_outputs/archive/"
+source("functions/functions.R")
+location <- "D://shiny/"
+output_directory <- paste0(location, "FEWS_outputs/data/")
+archive_directory1 <- paste0(location, "FEWS_outputs/archive/")
+archive_directory2 <- paste0(location, "FEWS_outputs/archive/")
+gdrive_folder <- "lffs_flow_archives"
 
-rivercode_list <- read.csv("C://Users/secka/documents/icprb/FEWS_outputs/data/riverlist.csv")
+rivercode_list <- read.csv(paste0(location, "FEWS_outputs/data/riverlist.csv"))
 
 
 for (i in c(1:12)){
@@ -20,11 +23,17 @@ for (i in c(1:12)){
   
   filename1 <- paste0(archive_directory1, rivername, "_daily", format(Sys.time(), "_%Y%m%d_%H"), ".csv")
   filename2 <- paste0(archive_directory1, rivername, "_hourly", format(Sys.time(), "_%Y%m%d_%H"), ".csv")
+  filename11 <- paste0(rivername, "_daily", ".csv")
+  filename12 <- paste0(rivername, "_hourly", ".csv")
+  
   #print (filename1)
   #print (filename2)
   
-  write.csv(lffs_daily_data1.df, file=filename1)
-  write.csv(lffs_hourly_data1.df, file=filename2)
+  #write.csv(lffs_daily_data1.df, file=filename1)
+  #write.csv(lffs_hourly_data1.df, file=filename2)
+  write.csv(lffs_daily_data1.df, file=filename11)
+  write.csv(lffs_hourly_data1.df, file=filename12)
+  a <- drive_upload(filename11, gdrive_folder, filename11)
   
 }
 
